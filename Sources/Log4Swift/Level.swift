@@ -40,7 +40,8 @@ public struct Level: OptionSet
 	
 	public func meets(threshold: Level) -> Bool
 	{
-		return threshold.contains(self) || meets(degree: threshold)
+		return threshold != Level.OFF &&
+			(threshold.contains(self) || meets(degree: threshold))
 	}
 	
 	public func isOn() -> Bool
