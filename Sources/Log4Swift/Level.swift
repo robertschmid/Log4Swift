@@ -20,12 +20,24 @@ public struct Level: OptionSet
 	public static let WARN = Level(rawValue: 1 << 2)
 	public static let INFO = Level(rawValue: 1 << 1)
 	public static let DEBUG = Level(rawValue: 1)
-
-
+	
 	public init(rawValue: UInt8) {
 		self.rawValue = rawValue
 	}
 
+	public init(levels: [String]) throws
+	{
+		var raw: UInt8 = levels.count > 1 ? 0 : Level.OFF.rawValue
+		for lStr in levels
+		{
+			if let l = levelMap[lStr]
+			{
+				raw = raw | l.rawValue
+			}
+		}
+		rawValue = raw
+	}
+	
 	public func meets(threshold: Level) -> Bool
 	{
 		return threshold.contains(self) || meets(degree: threshold)
@@ -43,3 +55,15 @@ public struct Level: OptionSet
 		return selfLvl >= minLvl
 	}
 }
+
+fileprivate let levelMap: [String: Level] = [
+											"DEBUG" : Level.DEBUG,
+											"INFO" : Level.INFO,
+											"WARN" : Level.WARN,
+											"ERROR" : Level.ERROR,
+											"SPECIAL" : Level.SPECIAL,
+											"TIME" : Level.TIME,
+											"DATA_DUMPS" : Level.DATA_DUMPS,
+											"OFF" : Level.OFF,
+											]
+

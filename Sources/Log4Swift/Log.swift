@@ -65,16 +65,16 @@ public class Log
 
 	init()
 	{
-		if let configURL = Bundle.module.url(forResource: "Log4Swift", withExtension: "config")
+		if let configURL = Bundle.main.url(forResource: "Log4Swift", withExtension: "config") ?? Bundle.module.url(forResource: "Log4Swift", withExtension: "config")
 		{
 			do {
 				let data = try Data(contentsOf: configURL, options: .mappedIfSafe)
 				let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
 				if let jsonResult = jsonResult as? Dictionary<String, AnyObject>
 				{
-					if let t = jsonResult["threshold"] as? Level
+					if let t = jsonResult["threshold"] as? [String]
 					{
-						threshold = t
+						try threshold = Level(levels: t)
 					}
 					if let s = jsonResult["subsystem"] as? String,
 					   let c = jsonResult["category"] as? String
@@ -83,6 +83,7 @@ public class Log
 					}
 				}
 			} catch {
+				print("Unable to intialize Log4Swift: \(error)")
 			   // handle error
 			}
 		}
@@ -93,6 +94,7 @@ public class Log
 		threshold = level; //(ERROR | TIMED | PHYSIO);
 		if threshold.isOn()
 		{
+			print("Error:  Logging to File not yet implemented")
 //			file = fopen((processingDir + "/" + name + ".dat").c_str(), "w");
 		}
 	}
@@ -157,7 +159,7 @@ public class Log
 		//		if level.rawValue >= threshold.rawValue
 
 		//TODO: The >= needs to be fixed I think
-		if (level.rawValue >= threshold.rawValue || (level.rawValue & threshold.rawValue) > 1)
+		if level.meets(threshold: threshold)
 		{
 			let fileName = file.components(separatedBy: "/").last!
 			let indent = String(repeating: TAB, count: indentCount)
@@ -167,17 +169,17 @@ public class Log
 				case .DEBUG:
 					xLog.debug("\(indent)\(format) (\(fileName):\(line))")
 					break
-				case .INFO:
-					xLog.debug("\(indent)\(format) (\(fileName):\(line))")
+				case .INFO, .TIME, .SPECIAL, .DATA_DUMPS:
+					xLog.info("\(indent)\(format) (\(fileName):\(line))")
 					break
 				case .WARN:
-					xLog.debug("\(indent)\(format) (\(fileName):\(line))")
+					xLog.warning("\(indent)\(format) (\(fileName):\(line))")
 					break
 				case .ERROR:
 					xLog.error("\(indent)\(format) (\(fileName):\(line))")
 					break
-				default: break
-					//do nothing
+				default:
+					xLog.error("Logging level is improperly defined (\(fileName):\(line))")
 			}
 		}
 

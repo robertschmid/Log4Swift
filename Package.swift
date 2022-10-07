@@ -30,7 +30,7 @@ let package = Package(
             name: "Log4SwiftTests",
             dependencies: ["Log4Swift"],
 			resources: [
-				.process("Resources/")
+				.process("TestResources/")
 			])
     ]
 )
