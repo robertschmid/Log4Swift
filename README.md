@@ -59,3 +59,7 @@ The output shows the times and the duration of time passed.
 ```
 
 The timer functions also allow for a blockId so you can run different timers together.
+
+=====
+
+Admittedly, I hate writing documentation.  More later.
