@@ -65,10 +65,10 @@ public class Log
 
 	init()
 	{
-		if let path = Bundle.main.path(forResource: "Log4Swift", ofType: "config")
+		if let configURL = Bundle.main.url(forResource: "Log4Swift", withExtension: "config")
 		{
 			do {
-				let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+				let data = try Data(contentsOf: configURL, options: .mappedIfSafe)
 				let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
 				if let jsonResult = jsonResult as? Dictionary<String, AnyObject>
 				{
