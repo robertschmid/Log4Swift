@@ -18,7 +18,7 @@ public class TimeFormats
 	private let formats = ["yyyy-MM-dd'T'HH:mm:ss.SSSSSSSX",
 						   "yyyy-MM-dd'T'HH:mm:ss.SSSSSSX",
 						   "yyyy-MM-dd'T'HH:mm:ss.SSSX"]
-	private let timeWithHours = DateFormatter()
+	public let timeWithHours = DateFormatter()
 	public let shortTime = DateFormatter()
 	
 	private init()
@@ -71,12 +71,5 @@ public class TimeFormats
 			return shortTime.string(from: date)
 		}
 		return timeWithHours.string(from: date)
-	}
-	
-	func atr(at: Double, before: Double) -> String
-	{
-		let df = before > 3600 ? timeWithHours : shortTime
-		let date = Date(timeIntervalSince1970: at)
-		return df.string(from: date)
 	}
 }
