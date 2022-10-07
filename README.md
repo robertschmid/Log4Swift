@@ -27,3 +27,35 @@ SPECIAL, TIME, DATA_DUMPS
 DEBUG, INFO, WARN & ERROR each limit the logging of lower levels so WARN will log WARN & ERROR but not DEBUG or INFO.
 SPECIAL, TIME & DATA_DUMPS serve special functions
 OFF overrides all logging and prevents any logging from occurring
+
+To use the default logger simple use the singleton - 
+
+```
+Log.shared.debug("This is a debug statement")
+```
+
+The output is not simply the message but also shows the file and line where the log statement was made
+
+```
+2022-10-07 14:38:16.732975-0500 xctest[13136:190224] [category] Debug Statement (Log4SwiftTests.swift:9)
+```
+
+Log4Swift includes special functions for timing blocks of code.  This is useful for finding bottlenecks.  To time section of code or a function use
+
+```
+Log.shared.markTimerStart("Starting process")
+myprocess()
+Log.shared.markTime("First process done.")
+secondProcess()
+Log.shared.markTimerEnd("Finished both processes")
+```
+
+The output shows the times and the duration of time passed.
+
+```
+2022-10-07 14:38:16.733151-0500 xctest[13136:190224] [category] Starting process (Log4SwiftTests.swift:11)
+2022-10-07 14:38:31.720943-0500 xctest[13136:190224] [category] First process done. at 19:38:16.733 (0.003 ms) (Log4SwiftTests.swift:12)
+2022-10-07 14:38:31.721230-0500 xctest[13136:190224] [category] Finished both processes at 19:38:31.721 (14.988 sec) (Log4SwiftTests.swift:13)
+```
+
+The timer functions also allow for a blockId so you can run different timers together.
