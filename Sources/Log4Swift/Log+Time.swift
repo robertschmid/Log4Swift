@@ -34,7 +34,7 @@ extension Log
 	{
 		let end = Date.now
 		if let newKey = startKey(file: file, funcName: funcName, line: line, blockId: blockId),
-		   let start = removeTimerMark(forKey: newKey)
+		   let start = self._timerMap[newKey]
 		{
 			let duration = end.timeIntervalSince(start)
 			let durStr = Num2Str.shared.duration(from: duration)

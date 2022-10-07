@@ -8,7 +8,7 @@ final class Log4SwiftTests: XCTestCase {
 			Log.shared.info("Info Statement")
 			Log.shared.warn("Warn Statement")
 			Log.shared.error("Error Statement")
-		Log.shared.markTimerStart(blockId: "foo1", msg: "Start Timer")
+		Log.shared.markTimerStart(msg: "Start Timer")
 		Log.shared.markTime(msg: "Check Lap")
 		Log.shared.markTimerEnd(msg: "End Timer")
 	}
