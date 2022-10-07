@@ -25,12 +25,12 @@ let package = Package(
         .target(
             name: "Log4Swift",
             dependencies: [],
-			resources: [.process("Resources")]),
+			resources: [.process("Resources/")]),
         .testTarget(
             name: "Log4SwiftTests",
             dependencies: ["Log4Swift"],
 			resources: [
-				.process("Resources")
+				.process("Resources/")
 			])
     ]
 )

@@ -65,7 +65,7 @@ public class Log
 
 	init()
 	{
-		if let configURL = Bundle.main.url(forResource: "Log4Swift", withExtension: "config")
+		if let configURL = Bundle.module.url(forResource: "Log4Swift", withExtension: "config")
 		{
 			do {
 				let data = try Data(contentsOf: configURL, options: .mappedIfSafe)
