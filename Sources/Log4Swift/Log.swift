@@ -37,7 +37,7 @@ public class Log
 		}
 	}
 	
-	public var useIndenting = false
+	public var useIndenting = true
 	//indentation Levels not threshold levels
 	private var _levels: [(String, String)] = []
 
