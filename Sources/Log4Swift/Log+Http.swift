@@ -10,9 +10,9 @@ import Foundation
 //TODO: Convert to subclass?
 extension Log
 {
-	public func debug(request: URLRequest, file: String = #file, funcName: String = #function, line: Int = #line, args:CVarArg = [])
+	public func session(request: URLRequest, file: String = #file, funcName: String = #function, line: Int = #line, args:CVarArg = [])
 	{
-		if Level.DEBUG.meets(threshold: threshold)
+		if Level.SESSION.meets(threshold: threshold)
 		{
 			var reqLog = "\n\n    BEGIN HTTP REQUEST >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n"
 			reqLog.append("        \(request.httpMethod!): \(request.url!)\n")
@@ -29,10 +29,10 @@ extension Log
 		}
 	}
 	
-	public func debug(response: URLResponse?, data: Data?, error: Error? = nil,
+	public func session(response: URLResponse?, data: Data?, error: Error? = nil,
 					  file: String = #file, funcName: String = #function, line: Int = #line, args:CVarArg = [])
 	{
-		if Level.DEBUG.meets(threshold: threshold), let resp = response as? HTTPURLResponse
+		if Level.SESSION.meets(threshold: threshold), let resp = response as? HTTPURLResponse
 		{
 			var respLog = "\n\n    BEGIN HTTP RESPONSE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n"
 			for header in resp.allHeaderFields

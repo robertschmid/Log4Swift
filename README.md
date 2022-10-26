@@ -22,10 +22,10 @@ DEBUG, INFO, WARN, ERROR
 
 and one or more of 
 
-SPECIAL, TIME, DATA_DUMPS
+SESSION, TIME, DATA_DUMPS
 
 DEBUG, INFO, WARN & ERROR each limit the logging of lower levels so WARN will log WARN & ERROR but not DEBUG or INFO.
-SPECIAL, TIME & DATA_DUMPS serve special functions
+SESSION, TIME & DATA_DUMPS serve special functions
 OFF overrides all logging and prevents any logging from occurring
 
 To use the default logger simple use the singleton - 

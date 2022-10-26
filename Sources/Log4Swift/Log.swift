@@ -169,7 +169,7 @@ public class Log
 				case .DEBUG:
 					xLog.debug("\(indent)\(format) (\(fileName):\(line))")
 					break
-				case .INFO, .TIME, .SPECIAL, .DATA_DUMPS:
+				case .INFO, .TIME, .SESSION, .DATA_DUMPS:
 					xLog.info("\(indent)\(format) (\(fileName):\(line))")
 					break
 				case .WARN:

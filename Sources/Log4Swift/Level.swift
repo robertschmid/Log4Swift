@@ -14,7 +14,7 @@ public struct Level: OptionSet
 	public static let OFF = Level(rawValue: 1 << 7)
 	public static let DATA_DUMPS = Level(rawValue: 1 << 6)
 	public static let TIME = Level(rawValue: 1 << 5)
-	public static let SPECIAL = Level(rawValue: 1 << 4)
+	public static let SESSION = Level(rawValue: 1 << 4)
 	
 	public static let ERROR = Level(rawValue: 1 << 3)
 	public static let WARN = Level(rawValue: 1 << 2)
@@ -51,8 +51,8 @@ public struct Level: OptionSet
 	
 	private func meets(degree: Level) -> Bool
 	{
-		let minLvl = degree.rawValue % Level.SPECIAL.rawValue
-		let selfLvl = self.rawValue % Level.SPECIAL.rawValue
+		let minLvl = degree.rawValue % Level.SESSION.rawValue
+		let selfLvl = self.rawValue % Level.SESSION.rawValue
 		return selfLvl >= minLvl
 	}
 }
@@ -62,7 +62,7 @@ fileprivate let levelMap: [String: Level] = [
 											"INFO" : Level.INFO,
 											"WARN" : Level.WARN,
 											"ERROR" : Level.ERROR,
-											"SPECIAL" : Level.SPECIAL,
+											"SESSION" : Level.SESSION,
 											"TIME" : Level.TIME,
 											"DATA_DUMPS" : Level.DATA_DUMPS,
 											"OFF" : Level.OFF,
