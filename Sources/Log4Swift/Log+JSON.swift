@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Log+JSON.swift
 //  
 //
 //  Created by Robert Schmid on 10/6/22.
