@@ -25,7 +25,7 @@ extension Log
 				reqLog.append("            \(raw)\n")
 			}
 			reqLog.append("    END HTTP REQUEST >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n")
-			fLog(file: file, funcName: funcName, line: line, level: .DEBUG, format: reqLog, args: args)
+			fLog(file: file, funcName: funcName, line: line, level: .SESSION, format: reqLog, args: args)
 		}
 	}
 	
@@ -44,7 +44,7 @@ extension Log
 				respLog.append("            \(raw)\n")
 			}
 			respLog.append("    END HTTP RESPONSE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n")
-			fLog(file: file, funcName: funcName, line: line, level: .DEBUG, format: respLog, args: args)
+			fLog(file: file, funcName: funcName, line: line, level: .SESSION, format: respLog, args: args)
 		}
 	}
 
