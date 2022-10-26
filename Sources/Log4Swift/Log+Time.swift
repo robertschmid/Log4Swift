@@ -13,7 +13,7 @@ extension Log
 	private func addTimerMark(key: TimerKey)
 	{
 		customQueue.async(flags: .barrier) {
-			self._timerMap[key] = Date.now
+			self._timerMap[key] = Date()
 		}
 	}
 	
@@ -32,7 +32,7 @@ extension Log
 	
 	public func markTime(file: String = #file, funcName: String = #function, line: Int = #line, blockId: String = "", msg: String)
 	{
-		let end = Date.now
+		let end = Date()
 		if let newKey = startKey(file: file, funcName: funcName, line: line, blockId: blockId),
 		   let start = self._timerMap[newKey]
 		{
@@ -46,7 +46,7 @@ extension Log
 	
 	public func markTimerEnd(file: String = #file, funcName: String = #function, line: Int = #line, blockId: String = "", msg: String)
 	{
-		let end = Date.now
+		let end = Date()
 		if let newKey = startKey(file: file, funcName: funcName, line: line, blockId: blockId),
 		   let start = removeTimerMark(forKey: newKey)
 		{

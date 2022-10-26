@@ -27,7 +27,9 @@ public class TimeString
 		durationF = NumberFormatter()
 		durationF.numberStyle = .decimal
 		durationF.maximumFractionDigits = 3
+		#if os(macOS)
 		durationF.hasThousandSeparators = true
+		#endif
 	}
 	
 	private func numWidth(num: Int) -> Int
