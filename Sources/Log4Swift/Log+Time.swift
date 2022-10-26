@@ -37,7 +37,7 @@ extension Log
 		   let start = self._timerMap[newKey]
 		{
 			let duration = end.timeIntervalSince(start)
-			let durStr = Num2Str.shared.duration(from: duration)
+			let durStr = TimeString.shared.duration(from: duration)
 			let dateStr:String = TimeFormats.shared.from(date: end)
 			
 			fLog(file: file, funcName: funcName, line: line, level: .TIME, format: "\(msg) at \(dateStr) (\(durStr))", args: [])
@@ -51,7 +51,7 @@ extension Log
 		   let start = removeTimerMark(forKey: newKey)
 		{
 			let duration = end.timeIntervalSince(start)
-			let durStr = Num2Str.shared.duration(from: duration)
+			let durStr = TimeString.shared.duration(from: duration)
 			let dateStr:String = TimeFormats.shared.from(date: end)
 			
 			fLog(file: file, funcName: funcName, line: line, level: .TIME, format: "\(msg) at \(dateStr) (\(durStr))", args: [])

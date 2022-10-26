@@ -10,12 +10,12 @@ import Foundation
 
 //String(format: ...) has a memory leak.  Probably due to bridging to NSString.
 //This will be a specialized version that will be lighter weight and not leaky
-public class Num2Str
+public class TimeString
 {
 	public enum Symbols: String { case SPACE = " ", DOT = ".", ZERO = "0" }
 	public enum Justify { case LEFT, RIGHT }
 	
-	public static let shared = Num2Str()
+	public static let shared = TimeString()
 	var percentF: NumberFormatter
 	var durationF: NumberFormatter
 	
